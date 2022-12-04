@@ -1,7 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav class="flex items-center gap-4 items-center justify-center">
+    <router-link to="/">Home</router-link>
+    <router-link v-if="$store.state.email" to="/create-student"
+      >Create student</router-link
+    >
+    <router-link v-if="$store.state.email" to="/list-of-students"
+      >List of students</router-link
+    >
+    <router-link v-if="!$store.state.email" to="/login">Login</router-link>
+    <a
+      class="cursor-pointer duration-300 hover:text-green-500"
+      v-if="$store.state.email"
+      @click="logout"
+      >Log out</a
+    >
   </nav>
   <router-view />
 </template>
@@ -21,6 +33,10 @@ nav {
   a {
     font-weight: bold;
     color: #2c3e50;
+    transition-duration: 300;
+    &:hover {
+      @apply text-green-500;
+    }
 
     &.router-link-exact-active {
       color: #42b983;
@@ -28,3 +44,24 @@ nav {
   }
 }
 </style>
+
+<script>
+import { useToast } from "vue-toastification";
+export default {
+  setup() {
+    const toast = useToast();
+    return { toast };
+  },
+  name: "AppRoot",
+  components: {},
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.toast.info("You're logged out");
+    },
+  },
+  mounted() {
+    this.$store.commit("initStore");
+  },
+};
+</script>

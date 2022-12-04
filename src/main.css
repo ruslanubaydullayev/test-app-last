@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-title {
+    @apply text-xl font-bold uppercase text-green-900;
+}
+
+input {
+    @apply outline-none
+}

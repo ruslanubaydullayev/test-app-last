@@ -13,6 +13,7 @@ export default createStore({
     quizFinished: false,
     questions: [],
     answers: [],
+    questionsLength: config.TOTAL_QUESTIONS,
   },
   getters: {
     getStatus(state) {

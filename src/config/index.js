@@ -1,4 +1,3 @@
 module.exports = {
-  TOTAL_QUESTIONS: 10,
-  TIMER_LIMIT: 600,
+  TOTAL_QUESTIONS: 5,
 };

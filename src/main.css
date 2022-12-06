@@ -9,3 +9,27 @@
 input {
     @apply outline-none
 }
+
+/* components */
+
+.v-selection-control {
+    color: rgb(44, 41, 41) !important;
+}
+
+.v-selection-control--dirty {
+    color: #FFFFFF !important;
+    background-color: #42b983 !important;
+    
+}
+
+.v-selection-control--dirty label {
+    opacity: 1 !important;
+}
+
+.v-selection-control-group .v-selection-control .v-label--clickable {
+    white-space: wrap !important;
+}
+
+.v-theme--light {
+    box-shadow: none !important;
+}

@@ -4,25 +4,8 @@
         "type": "multiple",
         "qid": 1,
         "question": "Companies of Laptops",
-        "options": [
-          {
-            "oid": 19,
-            "answer": "ASUS"
-          },
-          {
-            "oid": 20,
-            "answer": "DELL"
-          },
-          {
-            "oid": 21,
-            "answer": "CANON"
-          },
-          {
-            "oid": 22,
-            "answer": "CHEVROLET"
-          }
-        ],
-        "answer" : [19, 20, 21]
+        "options": ["ASUS", "DELL", "CANON", "CHEVROLET"],
+        "answer" : ["ASUS", "DELL", "CANON"]
       },
       {
         "type": "single",

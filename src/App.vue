@@ -1,6 +1,9 @@
 <template>
   <nav class="flex items-center gap-4 items-center justify-center">
     <router-link to="/">Home</router-link>
+    <router-link v-if="$store.state.email" to="/create-test"
+      >Create test</router-link
+    >
     <router-link v-if="$store.state.email" to="/new-test"
       >Start test</router-link
     >

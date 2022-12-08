@@ -8,9 +8,9 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/test",
-    name: "Test",
-    component: () => import("../pages/test.vue"),
+    path: "/create-test",
+    name: "Create test",
+    component: () => import("../pages/create-test.vue"),
   },
   {
     path: "/vuejs-quiz/finish",

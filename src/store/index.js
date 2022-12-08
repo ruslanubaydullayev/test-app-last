@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import router from "../router";
-import axios from "axios";
+// import axios from "axios";
 import config from "../config/index.js";
 export default createStore({
   state: {
@@ -13,6 +13,7 @@ export default createStore({
     quizFinished: false,
     questions: [],
     answers: [],
+    createdQuestions: [],
     questionsLength: config.TOTAL_QUESTIONS,
   },
   getters: {
@@ -30,22 +31,22 @@ export default createStore({
     updateAnswer(state, currentAnswer) {
       state.answers.push(currentAnswer);
     },
-    updateQuestions(state, questions) {
-      let n = config.TOTAL_QUESTIONS;
-      var result = new Array(n),
-        len = questions.questions.length,
-        taken = new Array(len);
-      if (n > len) {
-        console.log(n, len);
-        throw new RangeError("getRandom: more elements taken than available");
-      }
-      while (n--) {
-        var x = Math.floor(Math.random() * len);
-        result[n] = questions.questions[x in taken ? taken[x] : x];
-        taken[x] = --len in taken ? taken[len] : len;
-      }
-      state.questions = result;
-    },
+    // updateQuestions(state, questions) {
+    //   let n = config.TOTAL_QUESTIONS;
+    //   var result = new Array(n),
+    //     len = questions.questions.length,
+    //     taken = new Array(len);
+    //   if (n > len) {
+    //     console.log(n, len);
+    //     throw new RangeError("getRandom: more elements taken than available");
+    //   }
+    //   while (n--) {
+    //     var x = Math.floor(Math.random() * len);
+    //     result[n] = questions.questions[x in taken ? taken[x] : x];
+    //     taken[x] = --len in taken ? taken[len] : len;
+    //   }
+    //   state.questions = result;
+    // },
     login(state, email) {
       state.email = email;
       localStorage.setItem("login", email);
@@ -64,6 +65,13 @@ export default createStore({
     addStudent(state, student) {
       state.students.push(student);
       localStorage.setItem("students", JSON.stringify(state.students));
+    },
+    addCreatedQuestion(state, question) {
+      state.createdQuestions.push(question);
+      localStorage.setItem(
+        "createdQuestions",
+        JSON.stringify(state.createdQuestions)
+      );
     },
     removeStudent(state, item) {
       for (let i = 0; i < state.students.length; i++) {
@@ -86,22 +94,20 @@ export default createStore({
         state.students = JSON.parse(localStorage.getItem("students"));
       }
     },
+    initCreatedQuestions(state) {
+      if (localStorage.getItem("createdQuestions")) {
+        state.createdQuestions = JSON.parse(
+          localStorage.getItem("createdQuestions")
+        );
+      }
+    },
   },
   actions: {
-    updateQuizStarted(context, status) {
-      context.commit("updateQuizStarted", status);
-    },
-    updateQuizFinished(context, status) {
-      context.commit("updateQuizFinished", status);
-    },
-    updateAnswer(context, currentAnswer) {
-      context.commit("updateAnswer", currentAnswer);
-    },
-    loadData({ commit }) {
-      axios.get("/questions.json").then((response) => {
-        commit("updateQuestions", response.data);
-      });
-    },
+    // loadData({ commit }) {
+    //   axios.get("/questions.json").then((response) => {
+    //     commit("updateQuestions", response.data);
+    //   });
+    // },
   },
   modules: {},
 });

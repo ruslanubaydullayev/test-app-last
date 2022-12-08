@@ -1,37 +1,37 @@
 <template>
   <div>
+    <!-- <pre>{{ createdQuestions }}</pre> -->
     <div v-if="showTheResult">
       <h1>Result</h1>
-      <h2>{{ countCorrectAnswers }} / {{ questions.length }}</h2>
+      <h2>{{ countCorrectAnswers }} / {{ createdQuestions?.length }}</h2>
     </div>
-
     <v-card
-      v-else
+      v-else-if="createdQuestions && createdQuestions.length > 0"
       v-show="showQuestion(index)"
-      v-for="(question, index) in questions"
-      v-bind:key="question.qid"
+      v-for="(question, index) in createdQuestions"
+      v-bind:key="question?.qid"
       class=".quiz-inner-block mx-auto"
     >
-      <pre>{{ qIndex + 1 }} / {{ questions.length }}</pre>
-      <div v-if="question.type == 'single'">
+      <pre>{{ qIndex + 1 }} / {{ createdQuestions.length }}</pre>
+      <div v-if="question?.type == 'single'">
         <div class="bg-[#42b983] p-4 my-2">
-          <h4>{{ question.question }}</h4>
+          <h4>{{ question?.question }}</h4>
           <v-radio-group column required>
             <v-radio
               class="q-radio ma-1"
-              v-for="option in question.options"
-              :key="option.oid"
-              :label="option.answer"
-              :value="option.oid"
+              v-for="option in question?.options"
+              :key="option?.oid"
+              :label="option?.answer"
+              :value="option?.oid"
               color="blue"
               @click="selectedAnswer(question, option.oid)"
             ></v-radio>
           </v-radio-group>
         </div>
       </div>
-      <div v-else-if="question.type == 'text'">
+      <div v-else-if="question?.type == 'text'">
         <div class="p-4 my-2">
-          <h4>{{ question.question }}</h4>
+          <h4>{{ question?.question }}</h4>
           <v-text-field
             v-model="textQuestion"
             label="Answer"
@@ -47,14 +47,13 @@
         </div>
       </div>
       <v-container v-else fluid>
-        <p>{{ selected }}</p>
         <h4>{{ question.question }}</h4>
         <v-checkbox
-          v-for="(option, index) in question.options"
+          v-for="(option, index) in question?.options"
           :key="index"
           v-model="selected"
-          :label="option.answer"
-          :value="option.oid"
+          :label="option"
+          :value="option"
         ></v-checkbox>
         <button
           @click="selectedMultiple(question, selected)"
@@ -68,7 +67,6 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
 export default {
   name: "NewTestView",
   components: {},
@@ -81,6 +79,7 @@ export default {
       selected: [],
       sortedQ: [],
       sortedS: [],
+      questions: [],
     };
   },
   methods: {
@@ -90,7 +89,6 @@ export default {
     showResult() {
       this.showTheResult = true;
     },
-    ...mapActions(["loadData"]),
     selectedAnswer(q, oId) {
       for (let i = 0; i < q.options.length; i++) {
         if (q.options[i].oid == oId) {
@@ -99,7 +97,7 @@ export default {
           }
         }
       }
-      if (this.qIndex == this.questions.length - 1) {
+      if (this.qIndex == this.createdQuestions.length - 1) {
         this.showResult();
       } else {
         this.qIndex++;
@@ -110,30 +108,38 @@ export default {
       if (q.answer == text) {
         this.countCorrectAnswers++;
       }
-      if (this.qIndex == this.questions.length - 1) {
+      if (this.qIndex == this.createdQuestions.length - 1) {
         this.showResult();
       } else {
         this.qIndex++;
       }
     },
     selectedMultiple(q, selected) {
-      this.sortedQ = q.answer.sort();
-      this.sortedS = selected.sort();
+      this.sortedQ = q.answer.sort(function (a, b) {
+        return a - b;
+      });
+      this.sortedS = selected.sort(function (a, b) {
+        return a - b;
+      });
+      console.log(this.sortedQ, this.sortedS);
       if (JSON.stringify(this.sortedQ) == JSON.stringify(this.sortedS)) {
         this.countCorrectAnswers++;
       }
-      if (this.qIndex == this.questions.length - 1) {
+      if (this.qIndex == this.createdQuestions.length - 1) {
         this.showResult();
       } else {
         this.qIndex++;
+        this.selected = [];
       }
     },
   },
   computed: {
-    ...mapState(["questions"]),
+    createdQuestions() {
+      return this.$store.state.createdQuestions;
+    },
   },
-  created() {
-    this.loadData();
+  mounted() {
+    this.$store.commit("initCreatedQuestions");
   },
 };
 </script>

@@ -16,13 +16,13 @@ input {
     color: rgb(44, 41, 41) !important;
 }
 
-.v-selection-control--dirty {
+/* .v-selection-control--dirty {
     color: #FFFFFF !important;
     background-color: #42b983 !important;
     
-}
+} */
 
-.v-selection-control--dirty label {
+/* .v-selection-control--dirty label {
     opacity: 1 !important;
 }
 
@@ -32,4 +32,15 @@ input {
 
 .v-theme--light {
     box-shadow: none !important;
+} */
+.v-selection-control__input{
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.v-selection-control__input input {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 0.25rem !important;
+    padding: 0.5rem !important;
+    opacity: 1 !important;  
 }

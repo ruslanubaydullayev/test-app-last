@@ -1,49 +1,73 @@
 {
     "questions": [
       {
+        "type": "multiple",
+        "qid": 1,
+        "question": "Companies of Laptops",
+        "options": [
+          {
+            "oid": 19,
+            "answer": "ASUS"
+          },
+          {
+            "oid": 20,
+            "answer": "DELL"
+          },
+          {
+            "oid": 21,
+            "answer": "CANON"
+          },
+          {
+            "oid": 22,
+            "answer": "CHEVROLET"
+          }
+        ],
+        "answer" : [19, 20, 21]
+      },
+      {
         "type": "single",
         "qid": 1,
-        "question": "What is the short form of v-bind?",
+        "question": "2+2",
         "options": [
           {
             "oid": 1,
-            "answer": "No short form"
+            "answer": "5"
           },
           {
             "oid": 2,
-            "answer": ":",
+            "answer": "4",
             "correct": true
           },
           {
             "oid": 3,
-            "answer": "bind"
+            "answer": "6"
           },
           {
             "oid": 4,
-            "answer": ";"
+            "answer": "8"
           }
         ]
       },
       {
         "type": "single",
         "qid": 2,
-        "question": "In how many way we can define filter in vue.js?",
+        "question": "3+3",
         "options": [
           {
             "oid": 5,
-            "answer": "3"
+            "answer": "5"
           },
           {
             "oid": 6,
-            "answer": "4"
+            "answer": "7"
           },
           {
             "oid": 7,
-            "answer": "1"
+            "answer": "8"
           },
           {
             "oid": 8,
-            "answer": "2",
+            "answer": "6",
             "correct": true
           }
         ]
@@ -51,42 +75,64 @@
       {
         "type": "single",
         "qid": 3,
-        "question": "What are the advantages of using Vue.js?",
+        "question": "5+5",
         "options": [
           {
             "oid": 9,
-            "answer": " Small in size — The size of this framework is 18 to 21KB and it takes no time for the user to download and use it."
+            "answer": "9"
           },
           {
             "oid": 10,
-            "answer": " Easy to Understand — One of the reasons for the popularity of this framework is that it is quite easy to understand. The user can easily add Vue.js to his web project because of its simple structure."
+            "answer": "11"
           },
           {
             "oid": 11,
-            "answer": " Simple Integration — Vue.js can be integrated with the existing applications easily."
+            "answer": "25"
           },
           {
             "oid": 12,
-            "answer": " Virtual DOM — It uses virtual DOM similar to other existing frameworks such as ReactJS, Ember etc. Virtual DOM is a light-weight in-memory tree representation of the original HTML DOM and updated without affecting the original DOM."
+            "answer": "2"
           },
           {
             "oid": 13,
-            "answer": " All of the above",
+            "answer": "10",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "qid": 3,
+        "question": "4+4",
+        "options": [
+          {
+            "oid": 14,
+            "answer": "9"
+          },
+          {
+            "oid": 15,
+            "answer": "11"
+          },
+          {
+            "oid": 16,
+            "answer": "25"
+          },
+          {
+            "oid": 17,
+            "answer": "2"
+          },
+          {
+            "oid": 18,
+            "answer": "8",
             "correct": true
           }
         ]
       },
       {
         "type": "text",
-        "qid": 4,
-        "question": "What is the difference between v-if and v-show?",
-        "answer": "The only difference is that v-show will toggle the elements display CSS property based on the truthiness of the expression."
-      },
-      {
-        "type": "text",
-        "qid": 5,
-        "question": "CR7 or LM10",
-        "answer": "CR7"
+        "qid": 3,
+        "question": "6+6",
+        "answer": "12"
       }
     ]
   }

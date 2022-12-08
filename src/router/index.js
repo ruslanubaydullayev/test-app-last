@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/vuejs-quiz/finish",
-    name: "finish",
+    name: "FinishView",
     component: Finish,
   },
   {
@@ -26,6 +26,11 @@ const routes = [
     path: "/create-student",
     name: "create-student",
     component: () => import("../pages/create-student.vue"),
+  },
+  {
+    path: "/new-test",
+    name: "new-test",
+    component: () => import("../pages/new-test.vue"),
   },
   {
     path: "/list-of-students",

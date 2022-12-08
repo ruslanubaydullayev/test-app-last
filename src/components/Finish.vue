@@ -31,7 +31,7 @@ export default {
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: "Final Result ",
+          text: "Final Result",
           fontSize: 16,
         },
       },

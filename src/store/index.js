@@ -27,9 +27,6 @@ export default createStore({
     updateQuizFinished(state, status) {
       state.quizFinished = status;
     },
-    updateDialog(state, status) {
-      state.dialog = status;
-    },
     updateAnswer(state, currentAnswer) {
       state.answers.push(currentAnswer);
     },
@@ -91,22 +88,11 @@ export default createStore({
     },
   },
   actions: {
-    refreshDialog({ commit }) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          commit("updateDialog", true);
-          resolve();
-        }, 1000);
-      });
-    },
     updateQuizStarted(context, status) {
       context.commit("updateQuizStarted", status);
     },
     updateQuizFinished(context, status) {
       context.commit("updateQuizFinished", status);
-    },
-    updateDialog(context, status) {
-      context.commit("updateDialog", status);
     },
     updateAnswer(context, currentAnswer) {
       context.commit("updateAnswer", currentAnswer);

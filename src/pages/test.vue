@@ -15,10 +15,10 @@
         </v-chip>
         <span class="question">{{ question.question }}</span>
       </v-card-title>
+      <v-alert v-if="alert" class="q-alert" type="error">
+        Please select one answer
+      </v-alert>
       <div v-if="question.type == 'single'">
-        <v-alert v-if="alert" class="q-alert" type="error">
-          Please select one answer
-        </v-alert>
         <v-card-text class="q-pad">
           <v-radio-group
             column
@@ -36,35 +36,52 @@
             ></v-radio>
           </v-radio-group>
         </v-card-text>
+        <button
+          v-show="qIndex + 1 < questions.length"
+          @click="goToNextQuestion()"
+          class="bg-[#42b983] text-white px-4 py-2 rounded-md hover:bg-[#3b9f6d] focus:outline-none focus:ring-2 focus:ring-[#42b983] focus:ring-opacity-50"
+        >
+          Next
+        </button>
+        <v-btn
+          v-show="qIndex + 1 === questions.length"
+          @click="finishQuiz()"
+          right
+          large
+          color="success"
+          dark
+        >
+          Finish
+        </v-btn>
       </div>
       <div v-else-if="question.type == 'multiple'"></div>
       <div v-else>
         <v-text-field
           v-model="textQuestion"
           label="Write your answer here"
-          rules="['Field is required']"
         ></v-text-field>
+        <button
+          v-show="qIndex + 1 < questions.length"
+          @click="goToNextTextQuestion()"
+          class="bg-[#42b983] text-white px-4 py-2 rounded-md hover:bg-[#3b9f6d] focus:outline-none focus:ring-2 focus:ring-[#42b983] focus:ring-opacity-50"
+        >
+          Next
+        </button>
+        <v-btn
+          v-show="qIndex + 1 === questions.length"
+          @click="finishTestQuiz()"
+          right
+          large
+          color="success"
+          dark
+        >
+          Finish
+        </v-btn>
       </div>
 
       <div>
         <div class="flex items-center justify-end">
-          <button
-            v-show="qIndex + 1 < questions.length"
-            @click="goToNextQuestion()"
-            class="bg-[#42b983] text-white px-4 py-2 rounded-md hover:bg-[#3b9f6d] focus:outline-none focus:ring-2 focus:ring-[#42b983] focus:ring-opacity-50"
-          >
-            Next
-          </button>
-          <v-btn
-            v-show="qIndex + 1 === questions.length"
-            @click="finishQuiz()"
-            right
-            large
-            color="success"
-            dark
-          >
-            Finish
-          </v-btn>
+          <pre>{{ qIndex }}</pre>
         </div>
       </div>
     </v-card>
@@ -102,6 +119,17 @@ export default {
       this.currentAnswer = null;
       this.alert = false;
     },
+    // for text question
+    goToNextTextQuestion() {
+      if (this.textQuestion == "" || this.textQuestion == null) {
+        this.alert = true;
+        return false;
+      }
+      this.storeAnswer(this.textQuestion);
+      this.qIndex++;
+      this.textQuestion = null;
+      this.alert = false;
+    },
     selectedAnswer(qid, oid) {
       this.currentAnswer = { qid, oid };
     },
@@ -113,7 +141,20 @@ export default {
       this.goToNextQuestion();
       if (this.qIndex == this.answers.length) {
         this.updateQuizFinished(true);
-        this.$router.push({ name: "finish" });
+        this.$router.push({ name: "FinishView" });
+        this.$router.reload();
+      }
+    },
+
+    finishTestQuiz() {
+      if (this.textQuestion == null || this.textQuestion == "") {
+        this.alert = true;
+        return false;
+      }
+      this.goToNextQuestion();
+      if (this.qIndex == this.answers.length) {
+        this.updateQuizFinished(true);
+        this.$router.push({ name: "FinishView" });
       }
     },
   },

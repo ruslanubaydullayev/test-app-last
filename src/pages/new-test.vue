@@ -10,23 +10,28 @@
       v-show="showQuestion(index)"
       v-for="(question, index) in createdQuestions"
       v-bind:key="question?.qid"
-      class=".quiz-inner-block mx-auto"
+      class="quiz-inner-block mx-auto py-4"
     >
       <pre>{{ qIndex + 1 }} / {{ createdQuestions.length }}</pre>
       <div v-if="question?.type == 'single'">
         <div class="bg-[#42b983] p-4 my-2">
           <h4>{{ question?.question }}</h4>
-          <v-radio-group column required>
+          <v-radio-group column v-model="selectedSingle" required>
             <v-radio
               class="q-radio ma-1"
-              v-for="option in question?.options"
-              :key="option?.oid"
-              :label="option?.answer"
-              :value="option?.oid"
+              v-for="(option, index) in question?.options"
+              :key="index"
+              :label="option"
+              :value="option"
               color="blue"
-              @click="selectedAnswer(question, option.oid)"
             ></v-radio>
           </v-radio-group>
+          <button
+            class="h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800"
+            @click="selectedAnswer(question, selectedSingle)"
+          >
+            Next
+          </button>
         </div>
       </div>
       <div v-else-if="question?.type == 'text'">
@@ -76,6 +81,7 @@ export default {
       countCorrectAnswers: 0,
       showTheResult: false,
       textQuestion: "",
+      selectedSingle: null,
       selected: [],
       sortedQ: [],
       sortedS: [],
@@ -89,10 +95,12 @@ export default {
     showResult() {
       this.showTheResult = true;
     },
-    selectedAnswer(q, oId) {
+    selectedAnswer(q, s) {
+      console.log(q, "question");
+      console.log(s, "selected");
       for (let i = 0; i < q.options.length; i++) {
-        if (q.options[i].oid == oId) {
-          if (q.options[i].correct) {
+        if (q.options[i] == s) {
+          if (s == q.answer) {
             this.countCorrectAnswers++;
           }
         }
@@ -100,8 +108,8 @@ export default {
       if (this.qIndex == this.createdQuestions.length - 1) {
         this.showResult();
       } else {
+        this.selectedSingle = null;
         this.qIndex++;
-        this.$router.push({ query: { question: oId } });
       }
     },
     selectAnswer(q, text) {

@@ -4,6 +4,9 @@
     <router-link v-if="$store.state.email" to="/create-test"
       >Create test</router-link
     >
+    <router-link v-if="$store.state.email" to="/edit-test"
+      >Edit tests</router-link
+    >
     <router-link v-if="$store.state.email" to="/new-test"
       >Start test</router-link
     >

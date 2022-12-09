@@ -1,0 +1,122 @@
+{
+    "questions": [
+      {
+        "type": "multiple",
+        "qid": 1,
+        "question": "Companies of Laptops",
+        "options": ["ASUS", "DELL", "CANON", "CHEVROLET"],
+        "answer" : ["ASUS", "DELL", "CANON"]
+      },
+      {
+        "type": "single",
+        "qid": 1,
+        "question": "2+2",
+        "options": [
+          {
+            "oid": 1,
+            "answer": "5"
+          },
+          {
+            "oid": 2,
+            "answer": "4",
+            "correct": true
+          },
+          {
+            "oid": 3,
+            "answer": "6"
+          },
+          {
+            "oid": 4,
+            "answer": "8"
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "qid": 2,
+        "question": "3+3",
+        "options": [
+          {
+            "oid": 5,
+            "answer": "5"
+          },
+          {
+            "oid": 6,
+            "answer": "7"
+          },
+          {
+            "oid": 7,
+            "answer": "8"
+          },
+          {
+            "oid": 8,
+            "answer": "6",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "qid": 3,
+        "question": "5+5",
+        "options": [
+          {
+            "oid": 9,
+            "answer": "9"
+          },
+          {
+            "oid": 10,
+            "answer": "11"
+          },
+          {
+            "oid": 11,
+            "answer": "25"
+          },
+          {
+            "oid": 12,
+            "answer": "2"
+          },
+          {
+            "oid": 13,
+            "answer": "10",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "qid": 3,
+        "question": "4+4",
+        "options": [
+          {
+            "oid": 14,
+            "answer": "9"
+          },
+          {
+            "oid": 15,
+            "answer": "11"
+          },
+          {
+            "oid": 16,
+            "answer": "25"
+          },
+          {
+            "oid": 17,
+            "answer": "2"
+          },
+          {
+            "oid": 18,
+            "answer": "8",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "qid": 3,
+        "question": "6+6",
+        "answer": "12"
+      }
+    ]
+  }
+  

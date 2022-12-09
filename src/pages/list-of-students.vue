@@ -64,7 +64,7 @@
         >
           <tr>
             <th scope="col" class="py-3 px-6">Student name</th>
-            <th scope="col" class="py-3 px-6">Birth date</th>
+            <th scope="col" class="py-3 px-6">Phone Number</th>
             <th scope="col" class="py-3 px-6">Course</th>
             <th scope="col" class="py-3 px-6">Actions</th>
           </tr>
@@ -223,7 +223,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .modal-mask {
   position: fixed;
   z-index: 9998;

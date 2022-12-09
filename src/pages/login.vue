@@ -1,5 +1,7 @@
 <template>
   <div class="container mx-auto">
+    <pre>login: admin</pre>
+    <pre>password: pass1234</pre>
     <div class="max-w-[500px] mx-auto">
       <h2 class="page-title">Login</h2>
       <form @submit.prevent="submit">

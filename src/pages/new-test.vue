@@ -1,9 +1,10 @@
 <template>
   <div>
-    <!-- <pre>{{ createdQuestions }}</pre> -->
     <div v-if="showTheResult">
       <h1>Result</h1>
-      <h2>{{ countCorrectAnswers }} / {{ createdQuestions?.length }}</h2>
+      <h2 class="text-xl text-green">
+        {{ countCorrectAnswers }} / {{ createdQuestions?.length }}
+      </h2>
     </div>
     <v-card
       v-else-if="createdQuestions && createdQuestions.length > 0"

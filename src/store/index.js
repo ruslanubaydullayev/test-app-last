@@ -1,52 +1,17 @@
 import { createStore } from "vuex";
 import router from "../router";
-// import axios from "axios";
-import config from "../config/index.js";
 export default createStore({
   state: {
     email: "",
     MY_LOGIN: "admin",
     MY_PASSWORD: "pass1234",
     students: [],
-    dialog: false,
-    quizStarted: false,
-    quizFinished: false,
     questions: [],
     answers: [],
     createdQuestions: [],
-    questionsLength: config.TOTAL_QUESTIONS,
   },
-  getters: {
-    getStatus(state) {
-      return state.quizStarted;
-    },
-  },
+  getters: {},
   mutations: {
-    updateQuizStarted(state, status) {
-      state.quizStarted = status;
-    },
-    updateQuizFinished(state, status) {
-      state.quizFinished = status;
-    },
-    updateAnswer(state, currentAnswer) {
-      state.answers.push(currentAnswer);
-    },
-    // updateQuestions(state, questions) {
-    //   let n = config.TOTAL_QUESTIONS;
-    //   var result = new Array(n),
-    //     len = questions.questions.length,
-    //     taken = new Array(len);
-    //   if (n > len) {
-    //     console.log(n, len);
-    //     throw new RangeError("getRandom: more elements taken than available");
-    //   }
-    //   while (n--) {
-    //     var x = Math.floor(Math.random() * len);
-    //     result[n] = questions.questions[x in taken ? taken[x] : x];
-    //     taken[x] = --len in taken ? taken[len] : len;
-    //   }
-    //   state.questions = result;
-    // },
     login(state, email) {
       state.email = email;
       localStorage.setItem("login", email);
@@ -89,6 +54,28 @@ export default createStore({
       }
       localStorage.setItem("students", JSON.stringify(state.students));
     },
+    editCreatedQuestion(state, question) {
+      for (let i = 0; i < state.createdQuestions.length; i++) {
+        if (state.createdQuestions[i] == question) {
+          state.createdQuestions[i] = question;
+        }
+      }
+      localStorage.setItem(
+        "createdQuestions",
+        JSON.stringify(state.createdQuestions)
+      );
+    },
+    removeCreatedQuestion(state, item) {
+      for (let i = 0; i < state.createdQuestions.length; i++) {
+        if (state.createdQuestions[i] === item) {
+          state.createdQuestions.splice(i, 1);
+        }
+      }
+      localStorage.setItem(
+        "createdQuestions",
+        JSON.stringify(state.createdQuestions)
+      );
+    },
     initStudents(state) {
       if (localStorage.getItem("students")) {
         state.students = JSON.parse(localStorage.getItem("students"));
@@ -102,12 +89,6 @@ export default createStore({
       }
     },
   },
-  actions: {
-    // loadData({ commit }) {
-    //   axios.get("/questions.json").then((response) => {
-    //     commit("updateQuestions", response.data);
-    //   });
-    // },
-  },
+  actions: {},
   modules: {},
 });

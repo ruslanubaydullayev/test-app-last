@@ -36,6 +36,11 @@ const routes = [
     name: "List of students",
     component: () => import("../pages/list-of-students.vue"),
   },
+  {
+    path: "/:path(.*)",
+    name: "404",
+    component: () => import("../pages/error.vue"),
+  },
 ];
 
 const router = createRouter({

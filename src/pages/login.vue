@@ -112,6 +112,7 @@ export default {
       ) {
         this.$store.commit("login", this.form.login);
         this.toast.success("You are logged in!");
+        this.$router.push("/create-test");
       }
     },
   },
